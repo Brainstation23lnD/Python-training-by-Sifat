@@ -81,8 +81,6 @@ class VideoPlayer:
         cv2.destroyAllWindows()
 
 
-import argparse
-
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description="Play video and extract frames")
 
