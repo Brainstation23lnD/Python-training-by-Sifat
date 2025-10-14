@@ -1,0 +1,16 @@
+keras==3.11.3
+numpy==1.26.4
+pillow==11.3.0
+requests==2.32.5
+setuptools==80.9.0
+tensorboard==2.16.2
+tensorboard-data-server==0.7.2
+tensorflow==2.16.2
+tensorflow-macos==2.16.2
+tensorflow-metal==1.2.0
+langchain-core==0.3.78
+langgraph==0.6.8
+langgraph-checkpoint==2.1.1
+langgraph-prebuilt==0.6.4
+langgraph-sdk==0.2.9
+langsmith==0.4.32

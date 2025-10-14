@@ -1,0 +1,23 @@
+[project]
+name = "link-lagbe"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "celery>=5.5.3",
+    "django>=5.2.4",
+    "django-celery-results>=2.6.0",
+    "django-environ>=0.12.0",
+    "django-redis>=6.0.0",
+    "djangorestframework>=3.16.1",
+    "drf-yasg>=1.21.10",
+    "pyjwt>=2.10.1",
+    "python-decouple>=3.8",
+    "redis>=6.4.0",
+]
+
+[dependency-groups]
+dev = [
+    "django-debug-toolbar>=6.0.0",
+]

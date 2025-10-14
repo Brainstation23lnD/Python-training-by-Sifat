@@ -1,0 +1,6 @@
+fastapi==0.118.2
+grpcio==1.75.1
+grpcio-tools==1.75.1
+uvicorn==0.37.0
+SQLAlchemy==2.0.43
+aiosqlite==0.21.0
