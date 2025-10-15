@@ -1,6 +1,7 @@
 from typing import List, TypedDict
 
 from app.config import settings
+from app.db import Document
 from app.services import LLaMAWrapper, EmbeddingService
 from app.services.retriever import PostgresRetriever
 from app.services.vector_store import VectorStorage
@@ -8,7 +9,7 @@ from app.services.vector_store import VectorStorage
 
 class State(TypedDict):
     query: str
-    docs: List[str]
+    docs: List[Document]
     summary: str
 
 def retrieve_documents(state: State, vector_storage, owner_id: int) -> State:

@@ -59,7 +59,8 @@ services:
 #        condition: service_healthy
 #    restart: always
 #    volumes:
-#      - ./:/app  # Sync local code with container (dev)
+#      - ./:/app
+# Sync local code with container (dev)
 
 volumes:
   postgres_data:

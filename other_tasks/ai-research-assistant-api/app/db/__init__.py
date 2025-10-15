@@ -9,5 +9,6 @@ __all__ = (
     "settings",
     "engine",
     "DocumentChunk",
-    "Document"
+    "Document",
+    "vector_store"
 )

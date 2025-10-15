@@ -13,22 +13,25 @@ class PostgresRetriever(BaseRetriever):
     owner_id: int = Field(None)
     k: int = Field(default=5)
     metadata_filter: dict = Field(default_factory=dict)
-
     def filter_relevant_chunks(self, query_emb, chunks, threshold=0.7):
+        def is_metadata_match(chunk):
+            if not self.metadata_filter:
+                return True
+            if not chunk.meta_info:
+                return False
+            return all(chunk.meta_info.get(k) == v for k, v in self.metadata_filter.items())
+
+        def cosine_similarity(a, b):
+            a, b = np.array(a), np.array(b)
+            return np.dot(a, b) / (np.linalg.norm(a) * np.linalg.norm(b))
+
         relevant = []
         for chunk in chunks:
-            if self.metadata_filter:
-                match = True
-                for key, value in self.metadata_filter.items():
-                    if not chunk.meta_info or chunk.meta_info[key] != value:
-                        match = False
-                        break
-                if not match:
-                    continue
-            chunk_emb = np.array(chunk.embedding)
-            sim = np.dot(query_emb, chunk_emb) / (np.linalg.norm(query_emb) * np.linalg.norm(chunk_emb))
-            if sim >= threshold:
+            if not is_metadata_match(chunk):
+                continue
+            if cosine_similarity(query_emb, chunk.embedding) >= threshold:
                 relevant.append(chunk)
+
         return relevant
 
     def _get_relevant_documents(self, query: str, run_manager=None):

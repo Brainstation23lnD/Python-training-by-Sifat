@@ -4,6 +4,7 @@ from chromadb.config import Settings
 from chromadb.utils import embedding_functions
 
 # ---- Step 1: Setup Chroma DB (for Long-Term Memory) ----
+
 client = Client(Settings(persist_directory="./vector_db"))
 embedding_func = embedding_functions.OllamaEmbeddingFunction(model_name="nomic-embed-text")
 

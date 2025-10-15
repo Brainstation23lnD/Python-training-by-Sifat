@@ -1,8 +1,0 @@
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: django-config
-  namespace: linklagbe
-data:
-  DJANGO_SETTINGS_MODULE: "config.settings"
-  DEBUG: "False"

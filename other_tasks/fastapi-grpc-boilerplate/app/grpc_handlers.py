@@ -4,6 +4,7 @@ from app.crud import create_user, update_user, get_user, delete_user, get_users
 from app.database import AsyncSessionLocal
 from app.schemas import UserCreate
 
+USER_NOT_FOUND_MSG = "User not found"
 
 class UserService(user_pb2_grpc.UserServiceServicer):
     async def CreateUser(self, request, context):
@@ -17,7 +18,7 @@ class UserService(user_pb2_grpc.UserServiceServicer):
             user = await get_user(db, request.id)
             if not user:
                 context.set_code(grpc.StatusCode.NOT_FOUND)
-                context.set_details("User not found")
+                context.set_details(USER_NOT_FOUND_MSG)
                 return user_pb2.UserResponse()
             return user_pb2.UserResponse(id=user.id, name=user.name, email=user.email)
 
@@ -37,7 +38,7 @@ class UserService(user_pb2_grpc.UserServiceServicer):
             user = await update_user(db, request.id, user_info)
             if not user:
                 context.set_code(grpc.StatusCode.NOT_FOUND)
-                context.set_details("User not found")
+                context.set_details(USER_NOT_FOUND_MSG)
                 return user_pb2.UserResponse()
             return user_pb2.UserResponse(id=user.id, name=user.name, email=user.email)
 
@@ -46,5 +47,5 @@ class UserService(user_pb2_grpc.UserServiceServicer):
             success = await delete_user(db, request.id)
             if not success:
                 context.set_code(grpc.StatusCode.NOT_FOUND)
-                context.set_details("User not found")
-            return user_pb2.DeleteResponse(success=success)
+                context.set_details(USER_NOT_FOUND_MSG)
+            return user_pb2.DeleteRes_

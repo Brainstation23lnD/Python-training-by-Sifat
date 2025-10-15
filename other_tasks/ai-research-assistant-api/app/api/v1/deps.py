@@ -6,7 +6,7 @@ from jose import jwt, JWTError
 from app.config import settings
 
 
-def get_current_user(db: Session = Depends(get_db), token: str = "") -> User:
+def get_current_user(db: Session = Depends(get_db), token: str = ""):
     try:
         payload = jwt.decode(token, settings.SECRET_KEY, algorithms=["HS256"])
         user_id = payload.get("sub")
